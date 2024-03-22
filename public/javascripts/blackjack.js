@@ -95,7 +95,10 @@ function checkWinCondition(playerHandSum, dealerHandSum){
     }
 }
 
+export function playerHand(){
+
+}
+
 window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
 });
-

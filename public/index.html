@@ -3,16 +3,37 @@
 <head>
   <title>Digital Blackjack</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <script src="./javascripts/blackjack.js"></script>
+  <script src="./javascripts/blackjack.js"></script>  <!-- This will eventually be React, see Node classworks for examples and proper placement -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>   <!-- gets React -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>   <!-- gets ReactDOM -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>  <!-- gets babel compiler -->
 </head>
 
 <body>
-  <h1>Digital Blackjack</h1>
-  <div id="gamebody">
-    
+  <h1>Digital Blackjack for Kids!</h1>
+  <div id="board">
+
+    <h1>Opponent's Hand</h1>
+    <div id="opponent-hand"></div>
+
+    <h1 id="hand-title"> Your Hand </h1>
+    <!-- hand displays here -->
+    <div id="player-hand"></div>
+
+    <!-- load React component -->
+    <script src="javascripts/playerhand.js" type="text/babel"></script>
   </div>
-  <h1 id="playerhand"> Hand </h1>
+
   <input type="button" id="startGame" value="Start"></input>
 </body>
 
 </html>
+
+<!-- <board>
+        <opponent hand>
+          - how to decide what AI opponent does? 
+            - random choice that gets less likely to draw as they approach 21?
+        
+        <your hand>
+          
+        <draw card button> <stay button>-->
