@@ -1,6 +1,8 @@
 let suitsarray = new Array("Spades", "Clubs", "Hearts", "Diamonds");
 let cardvaluearray = new Array(11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10);
 let valuearray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
+let gameOver = false;
+
 
 /**Creates a new deck object consisting of 52 cards.
  * Each card has an assigned Value (int), ValueName (string), and Suit (string).
@@ -68,8 +70,10 @@ function createNewGame(){
     dealCard(dealerHand, CurrentDeck);
     dealCard(playerHand, CurrentDeck);
     dealCard(dealerHand, CurrentDeck);
-    document.getElementById("playerhand").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
-  
+        document.getElementById("playerhand").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+        checkDeck(CurrentDeck);
+        checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
+    
     //while(cardSum(playerHand) < 21 && cardSum(dealerHand) < 21){
     //    console.log("test loop");
   //      var input = prompt("Enter something here");
@@ -77,4 +81,21 @@ function createNewGame(){
     //}
 }
 
+function checkWinCondition(playerHandSum, dealerHandSum){
+    if(playerHandSum == 21 && dealerHandSum != 21){
+        document.getElementById("playerhand").innerHTML=("You win!")
+        return gameOver = true;
+    }
+    if(playerHandSum != 21 && dealerHandSum == 21 || playerHandSum > 21){
+        document.getElementById("playerhand").innerHTML=("You lose!")
+        return gameOver = true;
+    }
+    else{
+      return gameOver = false;  
+    }
+}
+
+window.addEventListener('load', function(event){
+    document.getElementById("startGame").addEventListener("click", createNewGame);
+});
 
