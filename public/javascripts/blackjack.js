@@ -70,7 +70,7 @@ function createNewGame(){
     dealCard(dealerHand, CurrentDeck);
     dealCard(playerHand, CurrentDeck);
     dealCard(dealerHand, CurrentDeck);
-        document.getElementById("playerhand").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+        document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
         checkDeck(CurrentDeck);
         checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
     
@@ -83,11 +83,11 @@ function createNewGame(){
 
 function checkWinCondition(playerHandSum, dealerHandSum){
     if(playerHandSum == 21 && dealerHandSum != 21){
-        document.getElementById("playerhand").innerHTML=("You win!")
+        document.getElementById("hand-title").innerHTML=("You win!")
         return gameOver = true;
     }
     if(playerHandSum != 21 && dealerHandSum == 21 || playerHandSum > 21){
-        document.getElementById("playerhand").innerHTML=("You lose!")
+        document.getElementById("hand-title").innerHTML=("You lose!")
         return gameOver = true;
     }
     else{
@@ -95,9 +95,9 @@ function checkWinCondition(playerHandSum, dealerHandSum){
     }
 }
 
-export function playerHand(){
+// export function getPlayerHand(){
 
-}
+// }
 
 window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
