@@ -37,7 +37,10 @@ function returnCardName(DeckObj, i){
     return (DeckObj[i].ValueName + (" of ") + DeckObj[i].Suit);
 }
 
-function checkDeck(DeckObj){
+// Checks contents of deck and player hand; prints to console
+// TODO: make this sum a hand and return an int
+function checkHand(DeckObj){
+    // builds string in console
     HandString = "Current Hand: \n"
     for(let i = 0; i < DeckObj.length; i++){
         HandString = HandString + returnCardName(DeckObj, i) + "\n";
@@ -59,6 +62,8 @@ function cardSum(hand){
     return sum;
 }
 
+/** Main Function
+  * Creates both player hands, creates + shuffles deck, deals two cards each, displays player's hand total on page. Checks deck, and checks who won */
 function createNewGame(){
     let playerHand = new Array();
     let dealerHand = new Array();
@@ -70,9 +75,10 @@ function createNewGame(){
     dealCard(dealerHand, CurrentDeck);
     dealCard(playerHand, CurrentDeck);
     dealCard(dealerHand, CurrentDeck);
-        document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
-        checkDeck(CurrentDeck);
-        checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
+
+    document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+    checkHand(CurrentDeck);
+    checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
     
     //while(cardSum(playerHand) < 21 && cardSum(dealerHand) < 21){
     //    console.log("test loop");
