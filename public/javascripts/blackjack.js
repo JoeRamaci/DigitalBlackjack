@@ -2,6 +2,11 @@ let suitsarray = new Array("Spades", "Clubs", "Hearts", "Diamonds");
 let cardvaluearray = new Array(11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10);
 let valuearray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
 
+// initialize decks
+let playerHand = new Array();
+let dealerHand = new Array();
+// TODO: make currentDeck here so all funcs can get
+
 /**Creates a new deck array consisting of 52 cards.
  * Each card has an assigned Value (int), ValueName (string), and Suit (string).
  */
@@ -70,11 +75,6 @@ function cardSum(hand){
     return sum;
 }
 
-/**
- * created outside function so it can be passed to other functions
- */
-let playerHand = new Array();
-let dealerHand = new Array();
 /** 
  * Main Function
  * Creates both player hands, creates + shuffles deck, deals two cards each, displays player's hand total on page. Checks deck, and checks who won 
@@ -99,6 +99,7 @@ function createNewGame(){
     dealerHand.forEach(e => console.log(e));
 
     document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+    document.getElementById("startGame").value=("Restart Gambling!");
     checkCards(CurrentDeck);
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
     
@@ -134,20 +135,6 @@ function getPlayerHand(){
 }
 
 /**
- * Adds 1 card to player's deck, and removes it from shuffled Deck that player and dealer are using
- * @param {Array} hand Hand to push card to
- * @param {Array} Deck Shuffled Deck to 
- * @returns {Array} Array with newHand and newDeck. Will need to be unwrapped to use? 
- */
-function hit(hand, Deck){
-    let newHand = hand.push(Deck[0]);
-    let newDeck = Deck.shift();
-    //TODO: Does this need to return card, or will it be able to just modify hand and it will alter the value outside this function? Pointers would be able to do that. Are there pointers in JS?
-    let returnArr = [newHand, newDeck];
-    return returnArr;
-}
-
-/**
  * adds no card to player's deck, 
  */
 function stand(){
@@ -162,7 +149,7 @@ function getDealerHand(){}
     window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
     document.getElementById("hit").addEventListener("click", dealCard(playerHand, CurrentDeck));
-    document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+    document.getElementById("hand-title").value=("Player hand total = " + cardSum(playerHand) + "\n");
 
 });
 
