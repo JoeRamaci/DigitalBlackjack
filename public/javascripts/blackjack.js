@@ -5,7 +5,7 @@ let valuearray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
 // initialize decks
 let playerHand = new Array();
 let dealerHand = new Array();
-// TODO: make currentDeck here so all funcs can get
+let currentDeck = new Array();
 
 /**Creates a new deck array consisting of 52 cards.
  * Each card has an assigned Value (int), ValueName (string), and Suit (string).
@@ -78,20 +78,18 @@ function cardSum(hand){
 /** 
  * Main Function
  * Creates both player hands, creates + shuffles deck, deals two cards each, displays player's hand total on page. Checks deck, and checks who won 
- * TODO: Currently will add cards to hand continually, while seemingly not removing them from CurrentDeck after initial kick. Must disallow clicking of start game button
- *      this function is tied to once game is started. 
-  */
+ */
 function createNewGame(){
     playerHand = [];
     dealerHand = [];
-    const CurrentDeck = new createDeck;
-    shuffleDeck(CurrentDeck);
+    const currentDeck = new createDeck;
+    shuffleDeck(currentDeck);
 
     // Calls the dealCard function and deals two cards to the player hand and dealer hand.
-    dealCard(playerHand, CurrentDeck);
-    dealCard(dealerHand, CurrentDeck);
-    dealCard(playerHand, CurrentDeck);
-    dealCard(dealerHand, CurrentDeck);
+    dealCard(playerHand, currentDeck);
+    dealCard(dealerHand, currentDeck);
+    dealCard(playerHand, currentDeck);
+    dealCard(dealerHand, currentDeck);
 
     console.log("playerHand:")
     playerHand.forEach(e => console.log(e));
@@ -100,7 +98,7 @@ function createNewGame(){
 
     document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
     document.getElementById("startGame").value=("Restart Gambling!");
-    checkCards(CurrentDeck);
+    checkCards(currentDeck);
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
     
     //while(cardSum(playerHand) < 21 && cardSum(dealerHand) < 21){
@@ -125,7 +123,7 @@ function checkWinCondition(playerHandSum, dealerHandSum){
 }
 
 /**
- * TODO: get it working 
+ * TODO: 10), 3) 
  */
 function getPlayerHand(){
     console.log("playerHand:")
@@ -135,32 +133,34 @@ function getPlayerHand(){
 }
 
 /**
+ * TODO: 11), 3)
+ */
+function getDealerHand(){}
+
+/**
+ * TODO: 1)
  * adds no card to player's deck, 
  */
 function stand(){
 
 }
 
-/**
- * TODO: write
- */
-function getDealerHand(){}
-
-    window.addEventListener('load', function(event){
+window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
-    document.getElementById("hit").addEventListener("click", dealCard(playerHand, CurrentDeck));
-    document.getElementById("hand-title").value=("Player hand total = " + cardSum(playerHand) + "\n");
+    document.getElementById("hit").addEventListener("click", dealCard(playerHand, currentDeck));
 
+    // TODO: this gives TypeError because when playerHand is initialied, it is empty with nothing. cardSum will 
+    // not work on it until it has items, but by the time cardSum is called, playerHand is populated. 
+    document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
 });
 
 /** 
  * TODO:
- *  1) add a stand button
- *  2) add hit button
- *  3) disallow start game button once a game is started.
- *      1) Boolean check?
- *  4) make getPlayerHand/getDealerHand exportable for use in displaying React elements online
- *  5) make getDealerHand
- *  6) make Deck a global obj so all functions are looking at the same deck
- *  7) make hands global too?
+ *  1) add stand button functionality
+ *  2) use dealCard to add hit button functionality
+ *  3) make getPlayerHand/getDealerHand exportable for use in displaying React elements online
+ *  4) pull win check out of create deck and give it own functionality 
+ *  5) make game continually hit/stand for dealer and player based on currentDeck for the game; if new game, new currentDeck
+ *  6) make getPlayerHand functionality
+ *  7) make getDealerHand functionality
  */
