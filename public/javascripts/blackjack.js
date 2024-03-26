@@ -18,7 +18,7 @@ function createDeck(){
 
 /**
  * Shuffles a deck using the Fisher-Yates shuffle algorithm.
- * @param {Array} DeckObj Object to be shuffled.
+ * @param {Array} Deck Object to be shuffled.
  * @returns Shuffled deck.
  */
 function shuffleDeck(ShuffledDeck){
@@ -31,30 +31,30 @@ function shuffleDeck(ShuffledDeck){
     return ShuffledDeck;
 }
 
-function returnCardName(DeckObj, i){
-    return (DeckObj[i].ValueName + (" of ") + DeckObj[i].Suit);
+function returnCardName(Deck, i){
+    return (Deck[i].ValueName + (" of ") + Deck[i].Suit);
 }
 
 // Checks contents of deck and player hand; prints to console
-function checkCards(DeckObj){
+function checkCards(Deck){
     // builds string in console
     HandString = "Current Hand: \n"
-    for(let i = 0; i < DeckObj.length; i++){
-        HandString = HandString + i + " " + returnCardName(DeckObj, i) + "\n";
+    for(let i = 0; i < Deck.length; i++){
+        HandString = HandString + i + " " + returnCardName(Deck, i) + "\n";
         
     }
     console.log(HandString);
 }
 
 /**
- * Adds Cards to Hand from DeckObj.
+ * Adds Cards to Hand from Deck.
  * @param {Array} hand Hand to push Card to.
- * @param {Array} DeckObj Shuffled Deck to deal Cards from.
+ * @param {Array} Deck Shuffled Deck to deal Cards from.
  * @returns adds first card to the hand from the deck, and removes that card from the deck.
  */
-function dealCard(hand, DeckObj){
+function dealCard(hand, Deck){
 
-    return hand.push(DeckObj[0]), DeckObj.shift();
+    return hand.push(Deck[0]), Deck.shift();
 }
 
 /**
@@ -82,8 +82,8 @@ let dealerHand = new Array();
  *      this function is tied to once game is started. 
   */
 function createNewGame(){
-    // let playerHand = new Array();
-    // let dealerHand = new Array();
+    playerHand = [];
+    dealerHand = [];
     const CurrentDeck = new createDeck;
     shuffleDeck(CurrentDeck);
 
@@ -136,12 +136,12 @@ function getPlayerHand(){
 /**
  * Adds 1 card to player's deck, and removes it from shuffled Deck that player and dealer are using
  * @param {Array} hand Hand to push card to
- * @param {Array} DeckObj Shuffled Deck to 
+ * @param {Array} Deck Shuffled Deck to 
  * @returns {Array} Array with newHand and newDeck. Will need to be unwrapped to use? 
  */
-function hit(hand, DeckObj){
-    let newHand = hand.push(DeckObj[0]);
-    let newDeck = DeckObj.shift();
+function hit(hand, Deck){
+    let newHand = hand.push(Deck[0]);
+    let newDeck = Deck.shift();
     //TODO: Does this need to return card, or will it be able to just modify hand and it will alter the value outside this function? Pointers would be able to do that. Are there pointers in JS?
     let returnArr = [newHand, newDeck];
     return returnArr;
