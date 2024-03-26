@@ -4,7 +4,7 @@ let valuearray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
 let gameOver = false;
 
 
-/**Creates a new deck object consisting of 52 cards.
+/**Creates a new deck array consisting of 52 cards.
  * Each card has an assigned Value (int), ValueName (string), and Suit (string).
  */
 function createDeck(){
@@ -43,17 +43,29 @@ function checkHand(DeckObj){
     // builds string in console
     HandString = "Current Hand: \n"
     for(let i = 0; i < DeckObj.length; i++){
-        HandString = HandString + returnCardName(DeckObj, i) + "\n";
+        HandString = HandString + i + " " + returnCardName(DeckObj, i) + "\n";
         
     }
     console.log(HandString);
 }
 
+/**
+ * Adds Cards to Hand from DeckObj
+ * @param {*} hand Hand to push Card to 
+ * @param {*} DeckObj Shuffled Deck to deal Cards from
+ * 
+ * @returns adds first card to the hand from the deck, and removes that card from the deck.
+ */
 function dealCard(hand, DeckObj){
 
     return hand.push(DeckObj[0]), DeckObj.shift();
 }
 
+/**
+ * sums up all cards within a hand
+ * @param {*} hand array of given hand
+ * @returns sum of hand
+ */
 function cardSum(hand){
     sum = 0;
     for(let i = 0; i < hand.length; i++ ){
@@ -62,11 +74,20 @@ function cardSum(hand){
     return sum;
 }
 
-/** Main Function
-  * Creates both player hands, creates + shuffles deck, deals two cards each, displays player's hand total on page. Checks deck, and checks who won */
+/**
+ * created outside function so it can be passed to other functions
+ */
+let playerHand = new Array();
+let dealerHand = new Array();
+/** 
+ * Main Function
+ * Creates both player hands, creates + shuffles deck, deals two cards each, displays player's hand total on page. Checks deck, and checks who won 
+ * TODO: Currently will add cards to hand continually, while seemingly not removing them from CurrentDeck after initial kick. Must disallow clicking of start game button
+ *      this function is tied to once game is started. 
+  */
 function createNewGame(){
-    let playerHand = new Array();
-    let dealerHand = new Array();
+    // let playerHand = new Array();
+    // let dealerHand = new Array();
     const CurrentDeck = new createDeck;
     shuffleDeck(CurrentDeck);
 
@@ -75,6 +96,11 @@ function createNewGame(){
     dealCard(dealerHand, CurrentDeck);
     dealCard(playerHand, CurrentDeck);
     dealCard(dealerHand, CurrentDeck);
+
+    console.log("playerHand:")
+    playerHand.forEach(e => console.log(e));
+    console.log("dealerHand:")
+    dealerHand.forEach(e => console.log(e));
 
     document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
     checkHand(CurrentDeck);
@@ -101,10 +127,30 @@ function checkWinCondition(playerHandSum, dealerHandSum){
     }
 }
 
-// export function getPlayerHand(){
+/**
+ * TODO: get it working 
+ */
+function getPlayerHand(){
+    console.log("playerHand:")
+    playerHand.forEach(e => console.log(e));
+    console.log("dealerHand:")
+    dealerHand.forEach(e => console.log(e));
+}
 
-// }
+/**
+ * TODO: write
+ */
+function getDealerHand(){}
 
 window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
 });
+
+/** 
+ * TODO:
+ *  1) add a stand button
+ *  2) add hit button
+ *  3) disallow start game button once a game is started.
+ *  4) make getPlayerHand/getDealerHand exportable for use in displaying React elements online
+ *  5) make getDealerHand
+ */
