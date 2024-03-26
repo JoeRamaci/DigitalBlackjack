@@ -20,7 +20,7 @@ function createDeck(){
 
 /**
  * Shuffles a deck using the Fisher-Yates shuffle algorithm.
- * @param {deck} DeckObj Object to be shuffled.
+ * @param {Array} DeckObj Object to be shuffled.
  * @returns Shuffled deck.
  */
 function shuffleDeck(ShuffledDeck){
@@ -38,7 +38,7 @@ function returnCardName(DeckObj, i){
 }
 
 // Checks contents of deck and player hand; prints to console
-// TODO: make this sum a hand and return an int
+// TODO: checks entire DeckObj instead of getting just the hand
 function checkHand(DeckObj){
     // builds string in console
     HandString = "Current Hand: \n"
@@ -51,8 +51,8 @@ function checkHand(DeckObj){
 
 /**
  * Adds Cards to Hand from DeckObj
- * @param {*} hand Hand to push Card to 
- * @param {*} DeckObj Shuffled Deck to deal Cards from
+ * @param {Array} hand Hand to push Card to 
+ * @param {Array} DeckObj Shuffled Deck to deal Cards from
  * 
  * @returns adds first card to the hand from the deck, and removes that card from the deck.
  */
@@ -63,7 +63,7 @@ function dealCard(hand, DeckObj){
 
 /**
  * sums up all cards within a hand
- * @param {*} hand array of given hand
+ * @param {Array} hand array of given hand
  * @returns sum of hand
  */
 function cardSum(hand){
@@ -138,12 +138,35 @@ function getPlayerHand(){
 }
 
 /**
+ * Adds 1 card to player's deck, and removes it from shuffled Deck that player and dealer are using
+ * @param {Array} hand Hand to push card to
+ * @param {Array} DeckObj Shuffled Deck to 
+ * @returns {Array} Array with newHand and newDeck. Will need to be unwrapped to use? 
+ */
+function hit(hand, DeckObj){
+    let newHand = hand.push(DeckObj[0]);
+    let newDeck = DeckObj.shift();
+    //TODO: Does this need to return card, or will it be able to just modify hand and it will alter the value outside this function? Pointers would be able to do that. Are there pointers in JS?
+    let returnArr = [newHand, newDeck];
+    return returnArr;
+}
+
+/**
+ * adds no card to player's deck, 
+ */
+function stand(){
+
+}
+
+/**
  * TODO: write
  */
 function getDealerHand(){}
 
 window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
+    document.getElementById("hit").addEventListener("click", hit);
+
 });
 
 /** 
@@ -151,6 +174,9 @@ window.addEventListener('load', function(event){
  *  1) add a stand button
  *  2) add hit button
  *  3) disallow start game button once a game is started.
+ *      1) Boolean check?
  *  4) make getPlayerHand/getDealerHand exportable for use in displaying React elements online
  *  5) make getDealerHand
+ *  6) make Deck a global obj so all functions are looking at the same deck
+ *  7) make hands global too?
  */
