@@ -1,8 +1,6 @@
 let suitsarray = new Array("Spades", "Clubs", "Hearts", "Diamonds");
 let cardvaluearray = new Array(11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10);
 let valuearray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
-let gameOver = false;
-
 
 /**Creates a new deck array consisting of 52 cards.
  * Each card has an assigned Value (int), ValueName (string), and Suit (string).
@@ -38,8 +36,7 @@ function returnCardName(DeckObj, i){
 }
 
 // Checks contents of deck and player hand; prints to console
-// TODO: checks entire DeckObj instead of getting just the hand
-function checkHand(DeckObj){
+function checkCards(DeckObj){
     // builds string in console
     HandString = "Current Hand: \n"
     for(let i = 0; i < DeckObj.length; i++){
@@ -50,10 +47,9 @@ function checkHand(DeckObj){
 }
 
 /**
- * Adds Cards to Hand from DeckObj
- * @param {Array} hand Hand to push Card to 
- * @param {Array} DeckObj Shuffled Deck to deal Cards from
- * 
+ * Adds Cards to Hand from DeckObj.
+ * @param {Array} hand Hand to push Card to.
+ * @param {Array} DeckObj Shuffled Deck to deal Cards from.
  * @returns adds first card to the hand from the deck, and removes that card from the deck.
  */
 function dealCard(hand, DeckObj){
@@ -62,9 +58,9 @@ function dealCard(hand, DeckObj){
 }
 
 /**
- * sums up all cards within a hand
- * @param {Array} hand array of given hand
- * @returns sum of hand
+ * Sums all cards within a hand.
+ * @param {Array} hand array of given hand.
+ * @returns sum of hand.
  */
 function cardSum(hand){
     sum = 0;
@@ -103,7 +99,7 @@ function createNewGame(){
     dealerHand.forEach(e => console.log(e));
 
     document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
-    checkHand(CurrentDeck);
+    checkCards(CurrentDeck);
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
     
     //while(cardSum(playerHand) < 21 && cardSum(dealerHand) < 21){
@@ -163,9 +159,10 @@ function stand(){
  */
 function getDealerHand(){}
 
-window.addEventListener('load', function(event){
+    window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
-    document.getElementById("hit").addEventListener("click", hit);
+    document.getElementById("hit").addEventListener("click", dealCard(playerHand, CurrentDeck));
+    document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
 
 });
 
