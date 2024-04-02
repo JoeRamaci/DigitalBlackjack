@@ -1,20 +1,16 @@
-let suitsarray = new Array("Spades", "Clubs", "Hearts", "Diamonds");
-let cardvaluearray = new Array(11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10);
-let valuearray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
+let suitArray = new Array("Spades", "Clubs", "Hearts", "Diamonds");
+let cardValueArray = new Array(11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10);
+let faceArray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
 
-// initialize decks
-let playerHand = new Array();
-let dealerHand = new Array();
-let currentDeck = new Array();
-
-/**Creates a new deck array consisting of 52 cards.
- * Each card has an assigned Value (int), ValueName (string), and Suit (string).
+/**
+ * Creates a new deck array consisting of 52 unshuffled cards.
+ * @returns Unshuffled deck.
  */
 function createDeck(){
     let deck = new Array();
-    for(let i = 0; i < suitsarray.length; i++){
+    for(let i = 0; i < suitArray.length; i++){
         for(let x = 0; x < 13; x++){
-            let card = {Value: cardvaluearray[x], ValueName: valuearray[x], Suit: suitsarray[i]};
+            let card = {faceValue: cardValueArray[x], faceName: faceArray[x], suit: suitArray[i]};
             deck.push(card);
         }
     }
@@ -22,81 +18,97 @@ function createDeck(){
 }
 
 /**
- * Shuffles a deck using the Fisher-Yates shuffle algorithm.
- * @param {Array} Deck Object to be shuffled.
+ * Shuffles a deck object using the Fisher-Yates shuffle algorithm.
+ * @param {*} deck Deck to be shuffled.
  * @returns Shuffled deck.
  */
-function shuffleDeck(ShuffledDeck){
-    let currentIndex = ShuffledDeck.length, randomIndex;
+function shuffleDeck(deck){
+    let currentIndex = deck.length, randomIndex;
     while (currentIndex > 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-        [ShuffledDeck[currentIndex], ShuffledDeck[randomIndex]] = [ShuffledDeck[randomIndex], ShuffledDeck[currentIndex]];
+        [deck[currentIndex], deck[randomIndex]] = [deck[randomIndex], deck[currentIndex]];
     }
-    return ShuffledDeck;
-}
-
-function returnCardName(Deck, i){
-    return (Deck[i].ValueName + (" of ") + Deck[i].Suit);
-}
-
-// Checks contents of deck and player hand; prints to console
-function checkCards(Deck){
-    // builds string in console
-    HandString = "Current Hand: \n"
-    for(let i = 0; i < Deck.length; i++){
-        HandString = HandString + i + " " + returnCardName(Deck, i) + "\n";
-        
-    }
-    console.log(HandString);
+    return deck;
 }
 
 /**
- * Adds Cards to Hand from Deck.
- * @param {Array} hand Hand to push Card to.
- * @param {Array} Deck Shuffled Deck to deal Cards from.
- * @returns adds first card to the hand from the deck, and removes that card from the deck.
+ * Returns the name of a card from a hand or deck using a specified index.
+ * @param {*} cards Hand or deck to be indexed.
+ * @param {*} i Index for hand or deck.
+ * @returns String i.e. "Ace of Spades"
  */
-function dealCard(hand, Deck){
+function returnCardName(cards, i){
+    return (cards[i].faceName + (" of ") + cards[i].suit);
+}
 
-    return hand.push(Deck[0]), Deck.shift();
+/**
+ * Creates a string of each card in a hand or deck and outputs the result to the console.
+ * @param {*} cards Hand or deck input.
+ */
+function checkCards(cards){
+    cardsString = "Current Hand: \n";
+    for(let i = 0; i < cards.length; i++){
+        cardsString = cardsString + " " + returnCardName(cards, i) + "\n";
+        
+    }
+    console.log(cardsString);
+}
+
+/**
+ * Adds card from deck to hand.
+ * @param {*} hand Hand to have card added to.
+ * @param {*} deck Deck to deal card from.
+ * @returns hand with dealt card and deck with card removed.
+ */
+function dealCard(hand, deck){
+    return hand.push(deck[0]), deck.shift();
 }
 
 /**
  * Sums all cards within a hand.
- * @param {Array} hand array of given hand.
- * @returns sum of hand.
+ * @param {*} hand Hand to sum all cards.
+ * @returns Sum of hand.
  */
 function cardSum(hand){
     sum = 0;
+    if(hand[0].faceValue == 11 && hand[1].faceValue == 11){
+        hand[0].faceValue = 1;
+    }
     for(let i = 0; i < hand.length; i++ ){
-        sum = hand[i].Value + sum;
+        sum = hand[i].faceValue + sum;
+    }
+    if(sum > 21){
+        for(let i = 0; i < hand.length; i++ ){
+            if(hand[i].faceValue == 11){
+                hand[i].faceValue = 1;
+                break;
+            }
+        }
+        sum = 0;
+        for(let i = 0; i < hand.length; i++ ){
+            sum = hand[i].faceValue + sum;
+        }
+        return sum;
     }
     return sum;
 }
 
-/** 
- * Main Function
- * Creates both player hands, creates + shuffles deck, deals two cards each, displays player's hand total on page. Checks deck, and checks who won 
- */
 function createNewGame(){
-    playerHand = [];
-    dealerHand = [];
-    const currentDeck = new createDeck;
+    let playerHand = [];
+    let dealerHand = [];
+    let currentDeck = new createDeck;
     shuffleDeck(currentDeck);
-
-    // Calls the dealCard function and deals two cards to the player hand and dealer hand.
+    
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
 
-    console.log("playerHand:")
-    playerHand.forEach(e => console.log(e));
-    console.log("dealerHand:")
-    dealerHand.forEach(e => console.log(e));
+    checkCards(playerHand);
+    console.log("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\n\nCurrent Player Sum: " + cardSum(playerHand) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
 
-    document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+    document.getElementById("hand-title").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\n\nCurrent Player Sum: " + cardSum(playerHand) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
     document.getElementById("startGame").value=("Restart Gambling!");
     checkCards(currentDeck);
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
