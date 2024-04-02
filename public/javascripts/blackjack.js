@@ -11,7 +11,7 @@ function createDeck(){
     for(let i = 0; i < suitArray.length; i++){
         for(let x = 0; x < 13; x++){
             let card = {faceValue: cardValueArray[x], faceName: faceArray[x], suit: suitArray[i]};
-            deck.push(card);
+            deck.push(card); 
         }
     }
     return deck;

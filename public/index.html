@@ -2,7 +2,7 @@
 
 <head>
   <title>Digital Blackjack</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/public/stylesheets/style.css">
   <script src="./javascripts/blackjack.js"></script>  <!-- This will eventually be React, see Node classworks for examples and proper placement -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>   <!-- gets React -->
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>   <!-- gets ReactDOM -->
@@ -10,10 +10,24 @@
 </head>
 
 <body>
-  <h1>Digital Blackjack for Kids!</h1>
+  
+  <div id = "page_header">
+    <div class = "header_icons">
+      <img src="/public/images/Heart_Icon.png">
+      <img src="/public/images/Diamond_Icon.png">
+    </div>
+    <div>
+      <img id = "title_icon" src="/public/images/Title_Icon.png">
+  </div>
+  <div class ="header_icons">
+    <img src="/public/images/Club_Icon.png">
+    <img src="/public/images/Spade_Icon.png">
+  </div>
+
+
   <div id="board">
 
-    <h1>Dealer's Hand</h1>
+    <img id = "dealer_hand_icon" src = "/public/images/Dealer_Hand_Icon.png">
     <!-- hand displays here -->
     <div id="dealer-hand"></div>
 
@@ -22,7 +36,7 @@
 
 
 
-    <h1 id="hand-title">Your Hand</h1>
+    <img id = "dealer_hand_icon" src = "/public/images/Player_Hand_Icon.png">
     <!-- hand displays here -->
     <div id="player-hand"></div>
 
@@ -36,12 +50,3 @@
 </body>
 
 </html>
-
-<!-- <board>
-        <opponent hand>
-          - how to decide what AI opponent does? 
-            - random choice that gets less likely to draw as they approach 21?
-        
-        <your hand>
-          
-        <draw card button> <stay button>-->
