@@ -10,35 +10,27 @@
 </head>
 
 <body>
+
+  <div id = "corners">
+    <img id = "cornertopright" src = "/public/images/Corner1.png">
+    <img id = "cornertopleft" src = "/public/images/Corner1.png">
+    <img id = "cornerbottomright" src = "/public/images/Corner1.png">
+    <img id = "cornerbottomleft" src = "/public/images/Corner1.png">
+  </div>
   
   <div id = "page_header">
-    <div class = "header_icons">
-      <img src="/public/images/Heart_Icon.png">
-      <img src="/public/images/Diamond_Icon.png">
-    </div>
-    <div>
-      <img id = "title_icon" src="/public/images/Title_Icon.png">
-  </div>
-  <div class ="header_icons">
-    <img src="/public/images/Club_Icon.png">
-    <img src="/public/images/Spade_Icon.png">
+      <img id = "title_icon" src="/public/images/Banner_Icon.png">
   </div>
 
 
   <div id="board">
 
+  <div id = "hands">
     <img id = "dealer_hand_icon" src = "/public/images/Dealer_Hand_Icon.png">
-    <!-- hand displays here -->
-    <div id="dealer-hand"></div>
-
-    <!-- load react component -->
-    <script src="javascripts/dealerhand.js" type="text/babel"></script>
-
-
-
     <img id = "dealer_hand_icon" src = "/public/images/Player_Hand_Icon.png">
-    <!-- hand displays here -->
-    <div id="player-hand"></div>
+  </div>
+  
+    <script src="javascripts/dealerhand.js" type="text/babel"></script>
 
     <!-- load React component -->
     <script src="javascripts/playerhand.js" type="text/babel"></script>

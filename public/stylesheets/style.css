@@ -3,14 +3,60 @@ body{
 }
 
 #title_icon{
- width: 50vi;
  height: auto;
- 
+ width: 90vi;
  image-rendering: auto;
  image-rendering: crisp-edges;
  image-rendering: pixelated;
 }
 
+#dealer_hand_icon{
+  width: 45vi;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+#hands{
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+#corners{
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+#cornertopright{
+  width: 9vi;
+  position: fixed;
+  right: 0%;
+}
+
+#cornertopleft{
+  transform: scaleX(-1);
+  width: 9vi;
+  position: fixed;
+  left: 0%;
+}
+
+#cornerbottomleft{
+  transform: scale(-1);
+  width: 9vi;
+  position: fixed;
+  left: 0%;
+  bottom: 10px;
+}
+
+#cornerbottomright{
+  transform: scaley(-1);
+  width: 9vi;
+  position: fixed;
+  right: 0%;
+  bottom: 10px;
+}
 
 .navigationbuttons{
   position: absolute;
@@ -20,16 +66,9 @@ body{
   font-size: 25pt;
 }
 
-.header_icons img{
-  width: 50px;
- image-rendering: auto;
- image-rendering: crisp-edges;
- image-rendering: pixelated;
-}
-
 #page_header{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: fit-content;
 }
