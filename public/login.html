@@ -2,7 +2,6 @@
 <head>
   <title>Digital Blackjack Login</title>
   <link rel="stylesheet" href="/public/stylesheets/style.css">
-  <script src="./javascripts/blackjack.js"></script>  <!-- This will eventually be React, see Node classworks for examples and proper placement -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>   <!-- gets React -->
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>   <!-- gets ReactDOM -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>  <!-- gets babel compiler -->
@@ -11,7 +10,7 @@
 <body>
     <div id="message"></div>
 
-    <form method="post" action="login">
+    <form method="post" action="/login">
         <div style="float:left; width: 200px;">Enter your username!</div>
         <input type="text" name="username" placeholder="Username">
         <br>
@@ -24,7 +23,7 @@
     </form>
     <br>
 
-    <div style="float:left;">Don't have an account? <a href="digitalBlackjack/createAccount">Create one here!</a></div>
+    <div style="float:left;">Don't have an account? <a href="/createAccount">Create one here!</a></div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);

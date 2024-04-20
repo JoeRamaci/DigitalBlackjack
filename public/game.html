@@ -3,7 +3,7 @@
 <head>
   <title>Digital Blackjack</title>
   <link rel="stylesheet" href="/public/stylesheets/style.css">
-  <script src="./javascripts/blackjack.js"></script>  <!-- This will eventually be React, see Node classworks for examples and proper placement -->
+  <script src="./javascripts/blackjack.js"></script>
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>   <!-- gets React -->
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>   <!-- gets ReactDOM -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>  <!-- gets babel compiler -->
@@ -29,7 +29,7 @@
     <img id = "dealer_hand_icon" src = "./images/Dealer_Hand_Icon.png">
     <img id = "dealer_hand_icon" src = "./images/Player_Hand_Icon.png">
   </div>
-  
+    <!-- load React component -->
     <script src="javascripts/dealerhand.js" type="text/babel"></script>
 
     <!-- load React component -->
@@ -39,6 +39,9 @@
   <input type="button" id="startGame" value="Start Gambling!"></input>
   <input type="button" id="hit" value="Hit"></input>
   <input type="button" id="stand" value="Stand"></input>
+  <br>
+  <br>
+  <div style="float:left;"><a href="/login">Log out</a></div>
 </body>
 
 </html>

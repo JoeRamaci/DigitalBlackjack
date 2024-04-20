@@ -7,8 +7,7 @@ var path = require('path');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
 
-/* Database funcitonality
-* Not sure if needed, but just in case? Remove if it breaks database stuff somehow */
+/* Database funcitonality */
 var env = require('dotenv').config();
 const Client = require('pg').Client;
 const client = new Client({
@@ -19,13 +18,13 @@ client.connect(); // connect to the DATABASE_URL
 /* login page 
 * localhost:3000/digitalBlackjack/login */
 router.get('/', function(req, res, next) {
-res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
 
 /* Create an Account page
 * localhost:3000/digitalBlackjack/createAccount */
 router.get('/createAccount', function(req, res, next) {
-res.sendFile(path.join(__dirname, '..', 'public', 'createAccount.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'createAccount.html'));
 });
 
 /* Game page

@@ -7,8 +7,7 @@ var path = require('path');
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
 
-/* Database funcitonality
- * Not sure if needed, but just in case? Remove if it breaks database stuff somehow */
+/* Database funcitonality */
 var env = require('dotenv').config();
 const Client = require('pg').Client;
 const client = new Client({
@@ -18,21 +17,21 @@ client.connect(); // connect to the DATABASE_URL
 
 
 /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
 
 
  /* login page
- * localhost:3000/digitalBlackjack/login  */
+ * localhost:3000/ */
  router.post('/', 
- passport.authenticate('local', { failureRedirect: 'digitalBlackjack/login?message=Incorrect+credentials', failureFlash:true }),
+ passport.authenticate('local', { failureRedirect: '?message=Incorrect+credentials', failureFlash:true }),
  function(req, res, next) {
-    res.redirect(path.join(__dirname, '..', 'public', 'game.html'))
+    res.redirect('/digitalBlackjack/game');
 });
 
 /* create account page
- * localhost:3000/digitalBlackjack/createAccount */
+ * localhost:3000/createAccount */
  router.post('/createAccount', function(req, res, next) {
   if (req.body.username == null) {
     console.log("USERNAME EMPTY");
@@ -60,7 +59,7 @@ client.connect(); // connect to the DATABASE_URL
           }
           console.log("ENCRYPTED PASS: " + encryptPassword) //DEBUG
           console.log("New user created");
-          res.redirect('/digitalBlackjack/login?message=New+user+created.+Try+logging+in!');
+          res.redirect('/digitalBlackjack/?message=New+user+created.+Try+logging+in!');
         });
       }
     });
@@ -68,10 +67,10 @@ client.connect(); // connect to the DATABASE_URL
  });
 
 /* game page
- * localhost:3000/digitalBlackjack/game 
- * should post a user's win or loss */
+ * localhost:3000/game
+ * should post a user's win or loss when it occurs */
 router.post('/game', function(req, res, next) {
-  client.query()
+  client.query();
 });
 
 module.exports = router;
