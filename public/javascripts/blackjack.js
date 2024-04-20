@@ -165,14 +165,3 @@ window.addEventListener('load', function(event){
     // not work on it until it has items, but by the time cardSum is called, playerHand is populated. 
     document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
 });
-
-/** 
- * TODO:
- *  1) add stand button functionality
- *  2) use dealCard to add hit button functionality
- *  3) make getPlayerHand/getDealerHand exportable for use in displaying React elements online
- *  4) pull win check out of create deck and give it own functionality 
- *  5) make game continually hit/stand for dealer and player based on currentDeck for the game; if new game, new currentDeck
- *  6) make getPlayerHand functionality
- *  7) make getDealerHand functionality
- */
