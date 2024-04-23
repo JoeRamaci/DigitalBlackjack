@@ -10,20 +10,28 @@
 <body>
     <div id="message"></div>
 
-    <form method="post" action="/createAccount">
-        <div style="float:left; width: 200px;">Enter your username!</div>
-        <input type="text" name="username" placeholder="Username">
-        <br>
-        <div style="float:left; width: 200px;">Enter your password!</div>
-        <input type="text" name="password" placeholder="Password">
-        <br>
-        <br>
-        <div style="float:left; width: 200px;">&nbsp;</div>
-        <input type="submit" name="submit" value="Create account!">
-    </form>
-    <br>
+    <div id = "corners">
+        <img id = "cornertopright" src = "./images/Corner1.png">
+        <img id = "cornertopleft" src = "./images/Corner1.png">
+        <img id = "cornerbottomright" src = "./images/Corner1.png">
+        <img id = "cornerbottomleft" src = "./images/Corner1.png">
+    </div>
 
-    <br> <a href="/login">Back to Main Page</a><br>
+    <div id="login">
+        <form method="post" action="/createAccount">
+            <div style="float:left; width: 200px;">Enter your username!</div>
+            <input type="text" name="username" placeholder="Username">
+            <br>
+            <div style="float:left; width: 200px;">Enter your password!</div>
+            <input type="text" name="password" placeholder="Password">
+            <br>
+            <br>
+            <div style="float:left; width: 200px;">&nbsp;</div>
+            <input type="submit" name="submit" value="Create account!">
+        </form>
+        <br>
+        <br> <a href="/login">Back to Main Page</a><br>
+    </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('message');
