@@ -110,10 +110,10 @@ res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
  function(req, res, next) {
   if (req.body.username == null) {
     console.log("USERNAME EMPTY");
-    res.redirect('/DigitalBlackjack/createAccount?message=Please+enter+a+username');
+    res.redirect('/createAccount?message=Please+enter+a+username');
   } else if (req.body.password == null) {
     console.log("PASSWORD EMPTY");
-    res.redirect('/DigitalBlackjack/createAccount?message=Please+enter+a+password');
+    res.redirect('/createAccount?message=Please+enter+a+password');
   } else {
     var salt = bcrypt.genSaltSync(10);
     var encryptPassword = bcrypt.hashSync(req.body.password, salt);
@@ -125,7 +125,7 @@ res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
       // if user already existing
       if (result.rows.length > 0) {
         console.log("user exists");
-        res.redirect('/DigitalBlackjack/createAccount?message=User+exists')
+        res.redirect('/createAccount?message=User+exists')
       } else {
         client.query('INSERT INTO Blackjack_user (username, password, win_count, loss_count) VALUES($1, $2, $3, $4)', [req.body.username, encryptPassword, 0, 0], function(err, result) {
           if (err) {
@@ -134,7 +134,7 @@ res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
           }
           console.log("ENCRYPTED PASS: " + encryptPassword) //DEBUG
           console.log("New user created");
-          res.redirect('/DigitalBlackjack/createAccount?message=New+user+created.+Try+logging+in!');
+          res.redirect('/createAccount?message=New+user+created.+Try+logging+in!');
         });
       }
     });
