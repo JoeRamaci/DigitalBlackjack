@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
  router.post('/', 
  passport.authenticate('local', { failureRedirect: '?message=Incorrect+credentials', failureFlash:true }),
  function(req, res, next) {
-    res.redirect('/digitalBlackjack/game');
+    res.redirect('/game');
 });
 
 /* create account page
@@ -35,10 +35,10 @@ router.get('/', function(req, res, next) {
  router.post('/createAccount', function(req, res, next) {
   if (req.body.username == null) {
     console.log("USERNAME EMPTY");
-    res.redirect('/digitalBlackjack/createAccount?message=Please+enter+a+username');
+    res.redirect('/createAccount?message=Please+enter+a+username');
   } else if (req.body.password == null) {
     console.log("PASSWORD EMPTY");
-    res.redirect('/digitalBlackjack/createAccount?message=Please+enter+a+password');
+    res.redirect('/createAccount?message=Please+enter+a+password');
   } else {
     var salt = bcrypt.genSaltSync(10);
     var encryptPassword = bcrypt.hashSync(req.body.password, salt);
@@ -50,7 +50,7 @@ router.get('/', function(req, res, next) {
       // if user already existing
       if (result.rows.length > 0) {
         console.log("user exists");
-        res.redirect('/digitalBlackjack/createAccount?message=User+exists')
+        res.redirect('/createAccount?message=User+exists')
       } else {
         client.query('INSERT INTO blackjack_user (username, password, win_count, loss_count) VALUES($1, $2, $3, $4)', [req.body.username, encryptPassword, 0, 0], function(err, result) {
           if (err) {
@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
           }
           console.log("ENCRYPTED PASS: " + encryptPassword) //DEBUG
           console.log("New user created");
-          res.redirect('/digitalBlackjack/?message=New+user+created.+Try+logging+in!');
+          res.redirect('/?message=New+user+created.+Try+logging+in!');
         });
       }
     });
