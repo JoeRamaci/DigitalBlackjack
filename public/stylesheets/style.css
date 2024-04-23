@@ -72,3 +72,10 @@ body{
   margin-right: auto;
   width: fit-content;
 }
+
+#scoreboard {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}

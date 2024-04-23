@@ -16,7 +16,7 @@ connectionString: process.env.DATABASE_URL
 client.connect(); // connect to the DATABASE_URL
 
 /* login page 
-* localhost:3000/digitalBlackjack/login */
+* localhost:3000/login */
 router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
@@ -28,21 +28,15 @@ router.get('/createAccount', function(req, res, next) {
 });
 
 /* Game page
-* localhost:3000/digitalBlackjack/game */
+* localhost:3000/game */
 router.get('/game', function(req, res, next) {
   res.sendFile(path.join(__dirname, '..', 'public', 'game.html'));
 });
 
 /* Top winners page
-* localhost:3000/digitalBlackjack/winners */
+* localhost:3000/winners */
 router.get('/winners', function(req, res, next) {
   res.sendFile(path.join(__dirname, '..', 'public', 'winners.html'));
-});
-
-/* Top losers page
-* localhost:3000/digitalBlackjack/winners */
-router.get('/losers', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '..', 'public', 'losers.html'));
 });
 
 router.get('/winnersOut',function(req, res, next){
@@ -62,6 +56,12 @@ router.get('/winnersOut',function(req, res, next){
   });
 });
 
+/* Top losers page
+* localhost:3000/winners */
+router.get('/losers', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '..', 'public', 'losers.html'));
+});
+
 router.get('/losersOut',function(req, res, next){
   client.query('SELECT * FROM blackjack_user', function(err,result){
     if (err) {
@@ -78,8 +78,6 @@ router.get('/losersOut',function(req, res, next){
     }
   });
 });
-
-
 
 
 module.exports = router;

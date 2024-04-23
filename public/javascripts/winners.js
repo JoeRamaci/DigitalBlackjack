@@ -20,7 +20,9 @@ const WinnersComponent = () => {
         <div>
             <table id='myTable'>
                 <thead>
-                    <tr><th>username</th><th>win_count</th></tr>
+                    <tr>
+                        <th>username</th><th>win_count</th>
+                    </tr>
                 </thead>
             </table>
         </div>
