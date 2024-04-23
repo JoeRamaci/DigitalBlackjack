@@ -1,6 +1,6 @@
 const LosersComponent = () => {
     React.useEffect(() => {
-        fetch('')
+        fetch('losersOut')
             .then(response => {
                 if(!response.ok){
                     throw new Error('Network response not ok');
@@ -20,7 +20,9 @@ const LosersComponent = () => {
         <div>
             <table id='myTable'>
                 <thead>
-                    <tr><th>username</th><th>loss_count</th></tr>
+                    <tr>
+                        <th>username</th><th>loss_count</th>
+                    </tr>
                 </thead>
             </table>
         </div>
