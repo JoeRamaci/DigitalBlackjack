@@ -30,6 +30,10 @@ router.get('/', function(req, res, next) {
     res.redirect('/game');
 });
 
+router.get('/createAccount', function(req, res, next){
+res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
+});
+
 /* create account page
  * localhost:3000/createAccount */
  router.post('/createAccount', function(req, res, next) {
