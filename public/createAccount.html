@@ -10,7 +10,7 @@
 <body>
     <div id="message"></div>
 
-    <form method="post" action="/createAccount">
+    <form method="post" action="/DigitalBlackjack/createAccount">
         <div style="float:left; width: 200px;">Enter your username!</div>
         <input type="text" name="username" placeholder="Username">
         <br>
@@ -23,6 +23,7 @@
     </form>
     <br>
 
+    <br> <a href="/DigitalBlackjack/login">Back to Main Page</a><br>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('message');
