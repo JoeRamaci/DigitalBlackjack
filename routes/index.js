@@ -23,7 +23,7 @@ router.get('/logout', function(req, res, next){
       return next(err);
     }
   });
-  res.redirect('/login')
+  res.redirect('/')
 });
 
 /* login page 
