@@ -108,7 +108,8 @@ function createNewGame(){
     checkCards(playerHand);
     console.log("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\n\nCurrent Player Sum: " + cardSum(playerHand) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
 
-    document.getElementById("hand-title").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\n\nCurrent Player Sum: " + cardSum(playerHand) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
+    document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
+    document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
     document.getElementById("startGame").value=("Restart Gambling!");
     checkCards(currentDeck);
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
