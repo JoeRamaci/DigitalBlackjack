@@ -8,11 +8,6 @@ var logger = require('morgan');
 // If not, you MAY have "password must be a string" error
 var env = require('dotenv').config();
 
-// routers
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var app = express();
-
 var session = require('express-session');
 
 // Flash is needed for passport middleware
@@ -74,6 +69,9 @@ passport.deserializeUser(function(id, done) {
   return done(null, id);
 });
 
+// routers
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 // express app construction
 var app = express();
 

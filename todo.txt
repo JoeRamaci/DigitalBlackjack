@@ -7,6 +7,8 @@
 	5) make game continually hit/stand for dealer and player based on currentDeck for the game; if new game, new currentDeck
 	6) make getPlayerHand functionality
 	7) make getDealerHand functionality
+	8) have listener for Restart Gambling to send sql data of win/loss to sql DB. If game not 
+	finished, send no data. Flag for if game is won?
 5) playerhand.js: Build React elements and logic to display player's cards
 6) dealerhand.js: Build React elements and logic to display dealer's cards 
 8) users.js: Build POST requests to track user, password, score, etc

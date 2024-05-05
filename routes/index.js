@@ -3,28 +3,17 @@
 
 var express = require('express');
 var router = express.Router();
-
 var path = require('path');
-var env = require('dotenv').config();
-
-const Client = require('pg').Client;
-const client = new Client({
-connectionString: process.env.DATABASE_URL
-}); 
-client.connect(); // connect to the DATABASE_URL
-
 var passport = require('passport');
 var bcrypt = require('bcryptjs');
 
-router.get('/logout', function(req, res, next){
-  req.logout(function(err){
-    if (err) {
-      console.log("unable to logout:", err);
-      return next(err);
-    }
-  });
-  res.redirect('/')
-});
+/* Database funcitonality */
+var env = require('dotenv').config();
+  const Client = require('pg').Client;
+  const client = new Client({
+  connectionString: process.env.DATABASE_URL
+}); 
+client.connect(); // connect to the DATABASE_URL
 
 /* login page 
 * localhost:3000/login */
@@ -37,16 +26,6 @@ router.get('/', function(req, res, next) {
 router.get('/createAccount', function(req, res, next) {
   res.sendFile(path.join(__dirname, '..', 'public', 'createAccount.html'));
 });
-
-
- /* login page
- * localhost:3000/ */
-router.post('/',
-passport.authenticate('local', {failureRedirect: 'login?message=Incorrect+credentials', failureFlash:true }),
-function(req, res, next){
-  console.log
-  res.redirect('/game');
-})
 
 /* Game page
 * localhost:3000/game */
@@ -100,14 +79,17 @@ router.get('/losersOut',function(req, res, next){
   });
 });
 
-router.get('/createAccount', function(req, res, next){
-res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
+/* login page
+ * localhost:3000/ */
+ router.post('/', 
+ passport.authenticate('local', { failureRedirect: '?message=Incorrect+credentials', failureFlash:true }),
+ function(req, res, next) {
+    res.redirect('/game');
 });
 
 /* create account page
  * localhost:3000/createAccount */
- router.post('/createAccount', 
- function(req, res, next) {
+ router.post('/createAccount', function(req, res, next) {
   if (req.body.username == null) {
     console.log("USERNAME EMPTY");
     res.redirect('/createAccount?message=Please+enter+a+username');
@@ -117,7 +99,7 @@ res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
   } else {
     var salt = bcrypt.genSaltSync(10);
     var encryptPassword = bcrypt.hashSync(req.body.password, salt);
-    client.query('SELECT * FROM Blackjack_user WHERE username = $1', [req.body.username], function(err, result) {
+    client.query('SELECT * FROM blackjack_user WHERE username = $1', [req.body.username], function(err, result) {
       if (err) {
         console.log("unable to query SELECT");
         next(err);
@@ -127,14 +109,14 @@ res.sendFile(path.join(__dirname,'..','public','createAccount.html'));
         console.log("user exists");
         res.redirect('/createAccount?message=User+exists')
       } else {
-        client.query('INSERT INTO Blackjack_user (username, password, win_count, loss_count) VALUES($1, $2, $3, $4)', [req.body.username, encryptPassword, 0, 0], function(err, result) {
+        client.query('INSERT INTO blackjack_user (username, password, win_count, loss_count) VALUES($1, $2, $3, $4)', [req.body.username, encryptPassword, 0, 0], function(err, result) {
           if (err) {
             console.log("unable to query INSERT");
             next(err);
           }
           console.log("ENCRYPTED PASS: " + encryptPassword) //DEBUG
           console.log("New user created");
-          res.redirect('/createAccount?message=New+user+created.+Try+logging+in!');
+          res.redirect('/?message=New+user+created.+Try+logging+in!');
         });
       }
     });

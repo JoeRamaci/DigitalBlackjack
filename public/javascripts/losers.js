@@ -16,6 +16,7 @@ const LosersComponent = () => {
                 console.error("Problem with fetch operation", error);
             });
     }, []); // Empty dependency array ensures this effect runs only once, after initial render
+    
     return (
         <div>
             <table id='myTable'>
