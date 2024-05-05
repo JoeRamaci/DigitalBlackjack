@@ -1,6 +1,6 @@
 const LosersComponent = () => {
     React.useEffect(() => {
-        fetch('losersOut')
+        fetch('/losersOut')
             .then(response => {
                 if(!response.ok){
                     throw new Error('Network response not ok');
