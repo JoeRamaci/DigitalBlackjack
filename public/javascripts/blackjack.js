@@ -6,12 +6,12 @@ let faceArray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "
  * Creates a new deck array consisting of 52 unshuffled cards.
  * @returns Unshuffled deck.
  */
-function createDeck(){
+function createDeck() {
     let deck = new Array();
-    for(let i = 0; i < suitArray.length; i++){
-        for(let x = 0; x < 13; x++){
-            let card = {faceValue: cardValueArray[x], faceName: faceArray[x], suit: suitArray[i]};
-            deck.push(card); 
+    for (let i = 0; i < suitArray.length; i++) {
+        for (let x = 0; x < 13; x++) {
+            let card = { faceValue: cardValueArray[x], faceName: faceArray[x], suit: suitArray[i] };
+            deck.push(card);
         }
     }
     return deck;
@@ -22,7 +22,7 @@ function createDeck(){
  * @param {*} deck Deck to be shuffled.
  * @returns Shuffled deck.
  */
-function shuffleDeck(deck){
+function shuffleDeck(deck) {
     let currentIndex = deck.length, randomIndex;
     while (currentIndex > 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -38,7 +38,7 @@ function shuffleDeck(deck){
  * @param {*} i Index for hand or deck.
  * @returns String i.e. "Ace of Spades"
  */
-function returnCardName(cards, i){
+function returnCardName(cards, i) {
     return (cards[i].faceName + (" of ") + cards[i].suit);
 }
 
@@ -46,11 +46,11 @@ function returnCardName(cards, i){
  * Creates a string of each card in a hand or deck and outputs the result to the console.
  * @param {*} cards Hand or deck input.
  */
-function checkCards(cards){
+function checkCards(cards) {
     cardsString = "Current Hand: \n";
-    for(let i = 0; i < cards.length; i++){
+    for (let i = 0; i < cards.length; i++) {
         cardsString = cardsString + " " + returnCardName(cards, i) + "\n";
-        
+
     }
     console.log(cardsString);
 }
@@ -61,7 +61,7 @@ function checkCards(cards){
  * @param {*} deck Deck to deal card from.
  * @returns hand with dealt card and deck with card removed.
  */
-function dealCard(hand, deck){
+function dealCard(hand, deck) {
     return hand.push(deck[0]), deck.shift();
 }
 
@@ -70,23 +70,23 @@ function dealCard(hand, deck){
  * @param {*} hand Hand to sum all cards.
  * @returns Sum of hand.
  */
-function cardSum(hand){
+function cardSum(hand) {
     sum = 0;
-    if(hand[0].faceValue == 11 && hand[1].faceValue == 11){
+    if (hand[0].faceValue == 11 && hand[1].faceValue == 11) {
         hand[0].faceValue = 1;
     }
-    for(let i = 0; i < hand.length; i++ ){
+    for (let i = 0; i < hand.length; i++) {
         sum = hand[i].faceValue + sum;
     }
-    if(sum > 21){
-        for(let i = 0; i < hand.length; i++ ){
-            if(hand[i].faceValue == 11){
+    if (sum > 21) {
+        for (let i = 0; i < hand.length; i++) {
+            if (hand[i].faceValue == 11) {
                 hand[i].faceValue = 1;
                 break;
             }
         }
         sum = 0;
-        for(let i = 0; i < hand.length; i++ ){
+        for (let i = 0; i < hand.length; i++) {
             sum = hand[i].faceValue + sum;
         }
         return sum;
@@ -94,7 +94,7 @@ function cardSum(hand){
     return sum;
 }
 
-function createNewGame(){
+function createNewGame() {
     // Initializes two empty hands for the player and dealer.
     let playerHand = [];
     let dealerHand = [];
@@ -102,29 +102,33 @@ function createNewGame(){
     // Creates a new deck and shuffles.
     let currentDeck = new createDeck;
     shuffleDeck(currentDeck);
-    
+
     //Deals the initial two cards to each hand from the top of the shuffled deck.
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
 
-    document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
-    document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
-    
+    // document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
+    // document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
+
     cardName = returnCardName(playerHand, 0);
     changeImage(cardName, "player_card1");
     cardName = returnCardName(playerHand, 1);
     changeImage(cardName, "player_card2");
 
+    changeImage("Unknown Card", "dealer_card1");
+    cardName = returnCardName(dealerHand, 1);
+    changeImage(cardName, "dealer_card2");
+
 
     // Replaces the start game button with a restart gambiling button. And unhides the hit and stand buttons.
-    document.getElementById("startGame").value=("Restart Gambling!");
+    document.getElementById("startGame").value = ("Restart Gambling!");
     document.getElementById("hit").removeAttribute("hidden");
     document.getElementById("stand").removeAttribute("hidden");
 
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
-    
+
 
 }
 
@@ -132,23 +136,23 @@ function changeImage(img, element) {
     document.getElementById(element).src = "./images/Cards/" + img + ".png";
 }
 
-function checkWinCondition(playerHandSum, dealerHandSum){
-    if(playerHandSum == 21 && dealerHandSum != 21){
-        document.getElementById("hand-title").innerHTML=("You win!")
+function checkWinCondition(playerHandSum, dealerHandSum) {
+    if (playerHandSum == 21 && dealerHandSum != 21) {
+        document.getElementById("hand-title").innerHTML = ("You win!")
         return gameOver = true;
     }
-    if(playerHandSum != 21 && dealerHandSum == 21 || playerHandSum > 21){
-        document.getElementById("hand-title").innerHTML=("You lose!")
+    if (playerHandSum != 21 && dealerHandSum == 21 || playerHandSum > 21) {
+        document.getElementById("hand-title").innerHTML = ("You lose!")
         return gameOver = true;
     }
-    else{
-      return gameOver = false;  
+    else {
+        return gameOver = false;
     }
 }
 
-function hit(playerHand, currentDeck, dealerHand){
+function hit(playerHand, currentDeck, dealerHand) {
     dealCard(playerHand, currentDeck)
-    document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
+    document.getElementById("player-hand-message").innerHTML = ("Current Player Sum: " + cardSum(playerHand));
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand))
 }
 
@@ -156,7 +160,7 @@ function hit(playerHand, currentDeck, dealerHand){
 /**
  * TODO: 10), 3) 
  */
-function getPlayerHand(){
+function getPlayerHand() {
     console.log("playerHand:")
     playerHand.forEach(e => console.log(e));
     console.log("dealerHand:")
@@ -166,21 +170,21 @@ function getPlayerHand(){
 /**
  * TODO: 11), 3)
  */
-function getDealerHand(){}
+function getDealerHand() { }
 
 /**
  * TODO: 1)
  * adds no card to player's deck, 
  */
-function stand(){
+function stand() {
     var elem = document.getElementById("hit");
 }
 
-window.addEventListener('load', function(event){
+window.addEventListener('load', function (event) {
     document.getElementById("startGame").addEventListener("click", createNewGame);
     document.getElementById("hit").addEventListener("click", hit(playerHand, currentDeck, dealerHand));
 
     // TODO: this gives TypeError because when playerHand is initialied, it is empty with nothing. cardSum will 
     // not work on it until it has items, but by the time cardSum is called, playerHand is populated. 
-    document.getElementById("hand-title").innerHTML=("Player hand total = " + cardSum(playerHand) + "\n");
+    document.getElementById("hand-title").innerHTML = ("Player hand total = " + cardSum(playerHand) + "\n");
 });

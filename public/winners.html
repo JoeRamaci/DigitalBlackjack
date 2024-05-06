@@ -1,26 +1,27 @@
 <html>
+
 <head>
-  <title>Forms</title>
+    <title>Forms</title>
 
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
 
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>
-  
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <div id = "corners">
-        <img id = "cornertopright" src = "./images/Corner1.png">
-        <img id = "cornertopleft" src = "./images/Corner1.png">
-        <img id = "cornerbottomright" src = "./images/Corner1.png">
-        <img id = "cornerbottomleft" src = "./images/Corner1.png">
+    <div id="corners">
+        <img id="cornertopright" src="./images/Corner1.png">
+        <img id="cornertopleft" src="./images/Corner1.png">
+        <img id="cornerbottomright" src="./images/Corner1.png">
+        <img id="cornerbottomleft" src="./images/Corner1.png">
     </div>
-    
+
     <div id="scoreboard">
         <h2> Our Biggest Winners! </h2>
         <div id="message"></div>
@@ -29,17 +30,18 @@
         <br>
         <a href="game">Go back to playing</a><br>
     </div>
-    
+
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('message');
         if (message) {
-        document.getElementById('message').innerHTML = name;
+            document.getElementById('message').innerHTML = name;
         }
     </script>
 
     <!-- Load our React component. -->
     <script src="/javascripts/winners.js" type="text/babel"></script>
 </body>
+
 </html>

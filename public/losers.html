@@ -1,4 +1,5 @@
 <html>
+
 <head>
   <title>Forms</title>
 
@@ -10,26 +11,26 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>
-  
+
 </head>
 
 <body>
-    <div id = "corners">
-        <img id = "cornertopright" src = "./images/Corner1.png">
-        <img id = "cornertopleft" src = "./images/Corner1.png">
-        <img id = "cornerbottomright" src = "./images/Corner1.png">
-        <img id = "cornerbottomleft" src = "./images/Corner1.png">
-    </div>
+  <div id="corners">
+    <img id="cornertopright" src="./images/Corner1.png">
+    <img id="cornertopleft" src="./images/Corner1.png">
+    <img id="cornerbottomright" src="./images/Corner1.png">
+    <img id="cornerbottomleft" src="./images/Corner1.png">
+  </div>
 
-    <div id="scoreboard">
-        <h2> Our Biggest Losers! </h2>
-        <div id="message"></div>
-        <!-- This element's contents will be replaced with your component. -->
-        <div id='losers'></div>
-        <br>
-        <a href="game">Go back to playing</a><br>
-    </div>
-  
+  <div id="scoreboard">
+    <h2> Our Biggest Losers! </h2>
+    <div id="message"></div>
+    <!-- This element's contents will be replaced with your component. -->
+    <div id='losers'></div>
+    <br>
+    <a href="game">Go back to playing</a><br>
+  </div>
+
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -42,4 +43,5 @@
   <!-- Load our React component. -->
   <script src="/javascripts/losers.js" type="text/babel"></script>
 </body>
+
 </html>

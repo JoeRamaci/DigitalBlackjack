@@ -2,55 +2,81 @@
 
 <head>
   <title>Digital Blackjack</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
   <script src="./javascripts/blackjack.js"></script>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>   <!-- gets React -->
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>   <!-- gets ReactDOM -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>  <!-- gets babel compiler -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin="anonymous"></script>
+  <!-- gets React -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <!-- gets ReactDOM -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>
+  <!-- gets babel compiler -->
 </head>
 
 <body>
-
-  <div id = "corners">
-    <img id = "cornertopright" src = "./images/Corner1.png">
-    <img id = "cornertopleft" src = "./images/Corner1.png">
-    <img id = "cornerbottomright" src = "./images/Corner1.png">
-    <img id = "cornerbottomleft" src = "./images/Corner1.png">
-  </div>
-  
-  <div id = "page_header">
-      <img id = "title_icon" src="./images/Banner_Icon.png">
+  <div class="navigation_tab">
+    <a href="/winners">Biggest Winners!</a>
+    <a href="/losers">Biggest Losers!</a>
+    <div style="float:right">
+      <a href="/">Log out</a>
+    </div>
   </div>
 
 
-  <div id="board">
-
-  <div id = "hands">
-    <img id = "dealer_hand_icon" src = "./images/Dealer_Hand_Icon.png">
-    <img id = "player_hand_icon" src = "./images/Player_Hand_Icon.png">
-    <img id = "player_card1" >
-    <img id = "player_card2" >
-    <div id = "dealer-hand-message"></div>
-    <div id = "player-hand-message"></div>
-  </div>
-    <!-- load React component -->
-    <script src="javascripts/dealerhand.js" type="text/babel"></script>
-
-    <!-- load React component -->
-    <script src="javascripts/playerhand.js" type="text/babel"></script>
+  <div class="page_header">
+    <img id="cornertopleft" src="./images/Corner1.png">
+    <img id="title_icon" src="./images/Banner_Icon.png">
+    <img id="cornertopright" src="./images/Corner1.png">
   </div>
 
-  <input type="button" id="startGame" value="Start Playing!"></input>
-  <input type="button" id="hit" value="Hit" hidden></input>
-  <input type="button" id="stand" value="Stand" hidden></input>
-  <br>
+  <table>
+    <tr>
+      <th><img id="hand_icon" src="./images/Dealer_Hand_Icon.png"></th>
+      <th><img id="hand_icon" src="./images/Player_Hand_Icon.png"></th>
+    </tr>
+    <tr>
+    <td id = "card_icons">
+      <img id="dealer_card1" style="width:15%">
+      <img id="dealer_card2" style="width:15%">
+    </td>
+    <td id = "card_icons">
+      <img id="player_card1" style="width:15%">
+      <img id="player_card2" style="width:15%">
+    </td>
+  </tr>
+  </table>
 
-  <br>
-  <div style="float:left;"><a href="/winners">Biggest Winners!</a> <a href="/losers">Biggest Losers!</a></div>
-  <br>
+<!-- load React component -->
+<script src="javascripts/dealerhand.js" type="text/babel"></script>
 
-  <br>
-  <div style="float:left;"><a href="/">Log out</a></div>
+
+<!-- load React component -->
+<script src="javascripts/playerhand.js" type="text/babel"></script>
+
+
+
+<div id="player_buttons">
+<input type="button" id="startGame" value="Start Playing!"></input>
+<input type="button" id="hit" value="Hit" hidden></input>
+<input type="button" id="stand" value="Stand" hidden></input>
+</div>
+
+
+
+
+
+
+
+
+
+
+  <div class="page_header">
+    <img id="cornerbottomleft" src="./images/Corner1.png">
+    <img id="title_icon" src="./images/Banner_Icon.png">
+    <img id="cornerbottomright" src="./images/Corner1.png">
+  </div>
+
 </body>
+
+
 
 </html>

@@ -2,7 +2,7 @@ const WinnersComponent = () => {
     React.useEffect(() => {
         fetch('/winnersOut')
             .then(response => {
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error('Network response not ok');
                 }
                 return response.json();
@@ -16,7 +16,7 @@ const WinnersComponent = () => {
                 console.error("Problem with fetch operation", error);
             });
     }, []); // Empty dependency array ensures this effect runs only once, after initial render
-    
+
     return (
         <div>
             <table id='myTable'>

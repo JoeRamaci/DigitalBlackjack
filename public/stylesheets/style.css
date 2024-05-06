@@ -2,21 +2,70 @@ body{
   background-image: -webkit-radial-gradient(Darkgreen, green);
 }
 
+.navigation_tab{
+  text-align: left;
+}
+
+.page_header{
+  text-align: center;
+}
+
 #title_icon{
- height: auto;
- width: 90vi;
+  width: 75vi;
  image-rendering: auto;
  image-rendering: crisp-edges;
  image-rendering: pixelated;
 }
 
-#dealer_hand_icon{
-  width: 45vi;
+#cornertopright{
+  width: 9vi;
   image-rendering: auto;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
 }
 
+#cornertopleft{
+  transform: scaleX(-1);
+  width: 9vi;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+#cornerbottomright{
+  transform: scaley(-1);
+  width: 9vi;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+#cornerbottomleft{
+  transform: scale(-1);
+  width: 9vi;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+table{
+  width: 100%;
+}
+
+#hand_icon{
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: 40vi;
+}
+
+#card_icons{
+  width: 45vi;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+/* 
 #player_hand_icon{
   width: 45vi;
   image-rendering: auto;
@@ -30,40 +79,11 @@ body{
   width: fit-content;
 }
 
-#corners{
-  image-rendering: auto;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-}
 
-#cornertopright{
-  width: 9vi;
-  position: fixed;
-  right: 0%;
-}
 
-#cornertopleft{
-  transform: scaleX(-1);
-  width: 9vi;
-  position: fixed;
-  left: 0%;
-}
 
-#cornerbottomleft{
-  transform: scale(-1);
-  width: 9vi;
-  position: fixed;
-  left: 0%;
-  bottom: 10px;
-}
 
-#cornerbottomright{
-  transform: scaley(-1);
-  width: 9vi;
-  position: fixed;
-  right: 0%;
-  bottom: 10px;
-}
+
 
 .navigationbuttons{
   position: absolute;
@@ -73,12 +93,7 @@ body{
   font-size: 25pt;
 }
 
-#page_header{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-}
+
 
 #scoreboard {
   position: absolute;
@@ -93,3 +108,53 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#player_card1 {
+  position: relative;
+  right:0%;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: 8vi;
+}
+
+#player_card2 {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: 8vi;
+}
+
+#player_card_icons{
+  position: relative;
+  width: 50vi;
+  left: 55%;
+  bottom: 15%;
+}
+
+#dealer_card1 {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: 8vi;
+}
+
+#dealer_card2 {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: 8vi;
+}
+
+#dealer_card_icons{
+  position: relative;
+  width: 50vi;
+  left: 55%;
+  bottom: 15%;
+}
+
+#player_buttons {
+  position: relative;
+  left: 40%;
+  bottom: 10%;
+} */ 
