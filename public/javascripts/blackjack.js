@@ -112,7 +112,10 @@ function createNewGame(){
     document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
     document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
     
-    changeImage("Ace of Clubs")
+    cardName = returnCardName(playerHand, 0);
+    changeImage(cardName, "player_card1");
+    cardName = returnCardName(playerHand, 1);
+    changeImage(cardName, "player_card2");
 
 
     // Replaces the start game button with a restart gambiling button. And unhides the hit and stand buttons.
@@ -125,8 +128,8 @@ function createNewGame(){
 
 }
 
-function changeImage(img) {
-    document.getElementById("player_hand_icon").src = "./images/Cards/Ace of Spades.png";
+function changeImage(img, element) {
+    document.getElementById(element).src = "./images/Cards/" + img + ".png";
 }
 
 function checkWinCondition(playerHandSum, dealerHandSum){
