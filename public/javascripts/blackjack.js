@@ -155,7 +155,7 @@ function getDealerHand(){}
  * adds no card to player's deck, 
  */
 function stand(){
-
+    var elem = document.getElementById("hit");
 }
 
 window.addEventListener('load', function(event){
