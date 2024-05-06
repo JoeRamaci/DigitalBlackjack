@@ -42,11 +42,6 @@ function returnCardName(cards, i){
     return (cards[i].faceName + (" of ") + cards[i].suit);
 }
 
-function returnCardImage(cards, i){
-    cardname = (cards[i].faceName + (" of ") + cards[i].suit);
-    document.getElementById("player-hand-message").setAttribute('src', cardname + ".png");
-}
-
 /**
  * Creates a string of each card in a hand or deck and outputs the result to the console.
  * @param {*} cards Hand or deck input.
@@ -100,35 +95,38 @@ function cardSum(hand){
 }
 
 function createNewGame(){
+    // Initializes two empty hands for the player and dealer.
     let playerHand = [];
     let dealerHand = [];
+
+    // Creates a new deck and shuffles.
     let currentDeck = new createDeck;
     shuffleDeck(currentDeck);
     
+    //Deals the initial two cards to each hand from the top of the shuffled deck.
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
-
-    checkCards(playerHand);
-    console.log("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\n\nCurrent Player Sum: " + cardSum(playerHand) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
 
     document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
     document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
-
-
-    //testing return card image
-    returnCardImage(playerHand, 1)
     
+    changeImage("Ace of Clubs")
+
+
+    // Replaces the start game button with a restart gambiling button. And unhides the hit and stand buttons.
     document.getElementById("startGame").value=("Restart Gambling!");
-    checkCards(currentDeck);
+    document.getElementById("hit").removeAttribute("hidden");
+    document.getElementById("stand").removeAttribute("hidden");
+
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
     
-    //while(cardSum(playerHand) < 21 && cardSum(dealerHand) < 21){
-    //    console.log("test loop");
-  //      var input = prompt("Enter something here");
-//
-    //}
+
+}
+
+function changeImage(img) {
+    document.getElementById("player_hand_icon").src = "./images/Cards/Ace of Spades.png";
 }
 
 function checkWinCondition(playerHandSum, dealerHandSum){
@@ -144,6 +142,13 @@ function checkWinCondition(playerHandSum, dealerHandSum){
       return gameOver = false;  
     }
 }
+
+function hit(playerHand, currentDeck, dealerHand){
+    dealCard(playerHand, currentDeck)
+    document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
+    checkWinCondition(cardSum(playerHand), cardSum(dealerHand))
+}
+
 
 /**
  * TODO: 10), 3) 
@@ -170,7 +175,7 @@ function stand(){
 
 window.addEventListener('load', function(event){
     document.getElementById("startGame").addEventListener("click", createNewGame);
-    document.getElementById("hit").addEventListener("click", dealCard(playerHand, currentDeck));
+    document.getElementById("hit").addEventListener("click", hit(playerHand, currentDeck, dealerHand));
 
     // TODO: this gives TypeError because when playerHand is initialied, it is empty with nothing. cardSum will 
     // not work on it until it has items, but by the time cardSum is called, playerHand is populated. 

@@ -27,7 +27,7 @@
 
   <div id = "hands">
     <img id = "dealer_hand_icon" src = "./images/Dealer_Hand_Icon.png">
-    <img id = "dealer_hand_icon" src = "./images/Player_Hand_Icon.png">
+    <img id = "player_hand_icon" src = "./images/Player_Hand_Icon.png">
     <div id = "dealer-hand-message"></div>
     <div id = "player-hand-message"></div>
   </div>
@@ -39,12 +39,14 @@
   </div>
 
   <input type="button" id="startGame" value="Start Playing!"></input>
-  <input type="button" id="hit" value="Hit"></input>
-  <input type="button" id="stand" value="Stand"></input>
+  <input type="button" id="hit" value="Hit" hidden></input>
+  <input type="button" id="stand" value="Stand" hidden></input>
   <br>
+
   <br>
   <div style="float:left;"><a href="/winners">Biggest Winners!</a> <a href="/losers">Biggest Losers!</a></div>
   <br>
+
   <br>
   <div style="float:left;"><a href="/">Log out</a></div>
 </body>
