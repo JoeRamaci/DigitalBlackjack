@@ -4,14 +4,27 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 // add this line before var indexRouter = require('./routes/index');
 // If not, you MAY have "password must be a string" error
 var env = require('dotenv').config();
 
+
+// routers
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+
+
+// express app construction
+var app = express();
+
+
 var session = require('express-session');
+
 
 // Flash is needed for passport middleware
 var flash = require('express-flash'); 
+
 
 const Client = require('pg').Client;
 // create an instance from Client
@@ -20,25 +33,21 @@ const client = new Client({
 });
 client.connect(); //connect to database
 
+
 // javascript password encryption (https://www.npmjs.com/package/bcryptjs)
 var bcrypt = require('bcryptjs');
 //  authentication middleware
 var passport = require('passport');
-
-
-
-
-
-
 // authentication locally (not using passport-google, passport-twitter, passport-github...)
 var LocalStrategy = require('passport-local').Strategy;
+
 
 passport.use(new LocalStrategy({
   usernameField: 'username', // form field name
   passwordField: 'password'
   },
   function(username, password, done) {
-    client.query('SELECT * FROM Blackjack_user WHERE username = $1', [username], function(err, result) {
+    client.query('SELECT * FROM blackjack_user WHERE username = $1', [username], function(err, result) {
       if (err) {
         console.log("SQL error"); //next(err);
         return done(null,false, {message: 'sql error'});
@@ -69,11 +78,8 @@ passport.deserializeUser(function(id, done) {
   return done(null, id);
 });
 
-// routers
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-// express app construction
-var app = express();
+
+
 
 // Use the session middleware
 // configure session object to handle cookie
