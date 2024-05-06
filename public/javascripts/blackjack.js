@@ -95,6 +95,11 @@ function cardSum(hand) {
 }
 
 function createNewGame() {
+    document.getElementById("player_card3").setAttribute("hidden", "")
+    document.getElementById("player_card4").setAttribute("hidden", "")
+    document.getElementById("dealer_card3").setAttribute("hidden", "")
+
+
     // Initializes two empty hands for the player and dealer.
     let playerHand = [];
     let dealerHand = [];
@@ -111,7 +116,7 @@ function createNewGame() {
 
     // document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
     // document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
-
+    
     cardName = returnCardName(playerHand, 0);
     changeImage(cardName, "player_card1");
     cardName = returnCardName(playerHand, 1);
@@ -128,8 +133,7 @@ function createNewGame() {
     document.getElementById("stand").removeAttribute("hidden");
 
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
-
-
+    
 }
 
 function changeImage(img, element) {
@@ -150,9 +154,14 @@ function checkWinCondition(playerHandSum, dealerHandSum) {
     }
 }
 
+
+
 function hit(playerHand, currentDeck, dealerHand) {
+    cardName = returnCardName(dealerHand, 0);
+    changeImage(cardName, "dealer_card1");
     dealCard(playerHand, currentDeck)
-    document.getElementById("player-hand-message").innerHTML = ("Current Player Sum: " + cardSum(playerHand));
+    cardName = returnCardName(playerHand, 2);
+    changeImage(cardName, "player_card3");
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand))
 }
 
@@ -177,14 +186,15 @@ function getDealerHand() { }
  * adds no card to player's deck, 
  */
 function stand() {
-    var elem = document.getElementById("hit");
+    var elem = document.getElementById("stand");
 }
 
-window.addEventListener('load', function (event) {
-    document.getElementById("startGame").addEventListener("click", createNewGame);
-    document.getElementById("hit").addEventListener("click", hit(playerHand, currentDeck, dealerHand));
+// const hitButton = document.getElementById("hit");
 
-    // TODO: this gives TypeError because when playerHand is initialied, it is empty with nothing. cardSum will 
-    // not work on it until it has items, but by the time cardSum is called, playerHand is populated. 
-    document.getElementById("hand-title").innerHTML = ("Player hand total = " + cardSum(playerHand) + "\n");
+// hitButton.addEventListener("click", hit(playerHand, currentDeck, dealerHand));
+
+
+window.addEventListener('load', function (event) {
+    document.getElementById("startGame").addEventListener("click", createNewGame)
+    document.getElementById("hit").onclick = hit(playerHand, currentDeck, dealerHand);
 });
