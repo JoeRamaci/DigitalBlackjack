@@ -42,6 +42,11 @@ function returnCardName(cards, i){
     return (cards[i].faceName + (" of ") + cards[i].suit);
 }
 
+function returnCardImage(cards, i){
+    cardname = (cards[i].faceName + (" of ") + cards[i].suit);
+    document.getElementById("player-hand-message").setAttribute('src', cardname + ".png");
+}
+
 /**
  * Creates a string of each card in a hand or deck and outputs the result to the console.
  * @param {*} cards Hand or deck input.
@@ -110,6 +115,11 @@ function createNewGame(){
 
     document.getElementById("dealer-hand-message").innerHTML=("Dealer Hand: \n???\n" + returnCardName(dealerHand, 1) + "\nCurrent Dealer Sum: " + dealerHand[1].faceValue);
     document.getElementById("player-hand-message").innerHTML=("Current Player Sum: " + cardSum(playerHand));
+
+
+    //testing return card image
+    returnCardImage(playerHand, 1)
+    
     document.getElementById("startGame").value=("Restart Gambling!");
     checkCards(currentDeck);
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
