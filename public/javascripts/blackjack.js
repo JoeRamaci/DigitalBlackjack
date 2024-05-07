@@ -116,10 +116,9 @@ let playerHand;
 let dealerHand;
 let currentDeck;
 function createNewGame() {
-    // document.getElementById("player_card3").setAttribute("hidden", "");
-    // document.getElementById("player_card4").setAttribute("hidden", "");
-    // document.getElementById("dealer_card3").setAttribute("hidden", "");
-
+    document.getElementById('card-row').innerHTML = 
+        ('<td id = "card_icons" name="dealer-cards"><img id="dealer_card1" style="width:15%"><img id="dealer_card2" style="width:15%"></td><td id = "card_icons" name="player-cards"><img id="player_card1" style="width:15%"><img id="player_card2" style="width:15%"></td>');
+     document.getElementById("win-loss-message").innerHTML = ('');
 
     // Initializes two empty hands for the player and dealer.
     playerHand = [];
