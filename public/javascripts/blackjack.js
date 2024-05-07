@@ -94,15 +94,19 @@ function cardSum(hand) {
     return sum;
 }
 
+// create global vars to be referenced elsewhere, though they will be defined here
+let playerHand;
+let dealerHand;
+let currentDeck;
 function createNewGame() {
-    document.getElementById("player_card3").setAttribute("hidden", "")
-    document.getElementById("player_card4").setAttribute("hidden", "")
-    document.getElementById("dealer_card3").setAttribute("hidden", "")
+    document.getElementById("player_card3").setAttribute("hidden", "");
+    document.getElementById("player_card4").setAttribute("hidden", "");
+    document.getElementById("dealer_card3").setAttribute("hidden", "");
 
 
     // Initializes two empty hands for the player and dealer.
-    let playerHand = [];
-    let dealerHand = [];
+    playerHand = [];
+    dealerHand = [];
 
     // Creates a new deck and shuffles.
     let currentDeck = new createDeck;
@@ -159,7 +163,7 @@ function checkWinCondition(playerHandSum, dealerHandSum) {
 function hit(playerHand, currentDeck, dealerHand) {
     cardName = returnCardName(dealerHand, 0);
     changeImage(cardName, "dealer_card1");
-    dealCard(playerHand, currentDeck)
+    dealCard(playerHand, currentDeck);
     cardName = returnCardName(playerHand, 2);
     changeImage(cardName, "player_card3");
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand))
@@ -169,24 +173,25 @@ function hit(playerHand, currentDeck, dealerHand) {
 /**
  * TODO: 10), 3) 
  */
-function getPlayerHand() {
+function getPlayerHand(playerHand) {
     console.log("playerHand:")
     playerHand.forEach(e => console.log(e));
-    console.log("dealerHand:")
-    dealerHand.forEach(e => console.log(e));
 }
 
 /**
  * TODO: 11), 3)
  */
-function getDealerHand() { }
+function getDealerHand(dealerHand) {
+    console.log("dealerHand:")
+    dealerHand.forEach(e => console.log(e));
+}
 
 /**
  * TODO: 1)
  * adds no card to player's deck, 
  */
 function stand() {
-    var elem = document.getElementById("stand");
+    // var elem = document.getElementById("stand");
 }
 
 // const hitButton = document.getElementById("hit");
@@ -194,7 +199,11 @@ function stand() {
 // hitButton.addEventListener("click", hit(playerHand, currentDeck, dealerHand));
 
 
-window.addEventListener('load', function (event) {
-    document.getElementById("startGame").addEventListener("click", createNewGame)
-    document.getElementById("hit").onclick = hit(playerHand, currentDeck, dealerHand);
+window.addEventListener('load', function () {
+    document.getElementById("startGame").addEventListener("click", function() {
+        createNewGame();
+    });
+    document.getElementById('hit').addEventListener('click', function() {
+        hit(playerHand, currentDeck, dealerHand);
+    });
 });
