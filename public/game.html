@@ -12,7 +12,7 @@
   <!-- gets babel compiler -->
 </head>
 
-<body>
+<body class = "crt">
   <div class="navigation_tab">
     <a href="/winners">Biggest Winners!</a>
     <a href="/losers">Biggest Losers!</a>
@@ -49,10 +49,16 @@
   </tr>
   </table>
 
+<!-- load React component -->
+<script src="javascripts/dealerhand.js" type="text/babel"></script>
+
+<!-- load React component -->
+<script src="javascripts/playerhand.js" type="text/babel"></script>
+
 <div id="player_buttons">
 <input type="button" id="startGame" value="Start Playing!"></input>
-<input type="button" id="hit" value="Hit" ></input>
-<input type="button" id="stand" value="Stand" ></input>
+<input type="button" id="hit" value="Hit" hidden></input>
+<input type="button" id="stand" value="Stand" hidden></input>
 </div>
 
   <div class="page_header">
