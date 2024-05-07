@@ -164,13 +164,14 @@ function changeImage(img, id) {
 
 function checkWinCondition(playerHandSum, dealerHandSum) {
     if (playerHandSum == 21 && dealerHandSum != 21) {
-        document.getElementById("hand-title").innerHTML = ("You win!");    
+        document.getElementById("win-loss-message").innerHTML = ("You win!");    
         return gameOver = true;
     }
     if (playerHandSum != 21 && dealerHandSum == 21 || playerHandSum > 21) {
-        document.getElementById("hand-title").innerHTML = ("You lose!");
+        document.getElementById("win-loss-message").innerHTML = ("You lose!");
         // get the name of first card from dealer
         cardName = returnCardName(dealerHand, 0);
+        // change image from unknown to known
         changeImage(cardName, "dealer_card1");
         return gameOver = true;
     }
@@ -186,13 +187,52 @@ function hit(playerHand, currentDeck, dealerHand) {
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
     // get name of last player card
-    cardName = returnCardName(playerHand, playerCardCount);
-    console.log("HIT " + cardName);
+    let playerCardName = returnCardName(playerHand, playerCardCount);
+
+    // PLAYER
+    console.log("HIT PLAYER " + playerCardName);
     playerCardCount++;
     console.log(playerCardCount);
-    document.getElementsByName('player-cards').innerHTML = (`<img id="player_card${playerCardCount}" style="width:15%">`);
-    console.log(cardName + ` player_card${playerCardCount}`);
-    changeImage(cardName, `player_card${playerCardCount}`);
+    let playerName = document.getElementsByName('player-cards');
+    console.log("TAG PLAYER"+playerName);
+    
+    // Grab all elements with the name 'player-cards'
+    const playerCards = document.getElementsByName('player-cards');
+    // Loop through each element with the name 'player-cards'
+    for (let i = 0; i < playerCards.length; i++) {
+        // Create a new element
+        const newElement = document.createElement('img');
+        newElement.id = `player_card${playerCardCount}`;
+        newElement.style.width = '15%';
+
+        // Append the new element to the current element
+        playerCards[i].appendChild(newElement);
+    }
+    console.log(playerCardName + ` player_card${playerCardCount}`);
+    changeImage(playerCardName, `player_card${playerCardCount}`);
+
+    // // DEALER
+    // let dealerCardName = returnCardName(dealerHand, dealerCardCount);
+    // console.log("HIT DEALER" + dealerCardName);
+    // dealerCardCount++;
+    // console.log(dealerCardCount);
+    // let dealerName = document.getElementsByName('dealer-cards');
+    // console.log("TAG DEALER"+ dealerName);
+
+    // // Grab all elements with the name 'player-cards'
+    // const dealerCards = document.getElementsByName('dealer-cards');
+    // // Loop through each element with the name 'player-cards'
+    // for (let i = 0; i < dealerCards.length; i++) {
+    //     // Create a new element
+    //     const newElement = document.createElement('img');
+    //     newElement.id = `dealer_card${dealerCardCount}`;
+    //     newElement.style.width = '15%';
+
+    //     // Append the new element to the current element
+    //     dealerCards[i].appendChild(newElement);
+    // }
+    // console.log(dealerCardName + ` dealer_card${dealerCardCount}`);
+    // changeImage(dealerCardName, `dealer_card${dealerCardCount}`);
 
     // DEBUG
     console.log("\nPlayerHand post hit:");
@@ -200,6 +240,12 @@ function hit(playerHand, currentDeck, dealerHand) {
     console.log("\nDealerHand post hit:");
     checkCards(dealerHand);
     console.log("\n");
+
+    // REVEAL DEALER
+    // get the name of first card from dealer
+    cardName = returnCardName(dealerHand, 0);
+    // change image from unknown to known
+    changeImage(cardName, "dealer_card1");
 
     // check if someone won
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
