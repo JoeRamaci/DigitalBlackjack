@@ -208,7 +208,7 @@ function hit(playerHand, currentDeck, dealerHand) {
         // Append the new element to the current element
         playerCards[i].appendChild(newElement);
     }
-    console.log(playerCardName + ` player_card${playerCardCount}`);
+    console.log(playerCardName + `player_card${playerCardCount}`);
     changeImage(playerCardName, `player_card${playerCardCount}`);
 
     // // DEALER
