@@ -243,9 +243,9 @@ function hit(playerHand, currentDeck, dealerHand) {
 
     // REVEAL DEALER
     // get the name of first card from dealer
-    cardName = returnCardName(dealerHand, 0);
-    // change image from unknown to known
-    changeImage(cardName, "dealer_card1");
+    // cardName = returnCardName(dealerHand, 0);
+    // // change image from unknown to known
+    // changeImage(cardName, "dealer_card1");
 
     // check if someone won
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
@@ -257,6 +257,11 @@ function hit(playerHand, currentDeck, dealerHand) {
  */
 function stand() {
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
+    // REVEAL DEALER
+    // get the name of first card from dealer
+    cardName = returnCardName(dealerHand, 0);
+    // change image from unknown to known
+    changeImage(cardName, "dealer_card1");
 }
 
 // const hitButton = document.getElementById("hit");
