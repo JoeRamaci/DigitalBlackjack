@@ -256,7 +256,7 @@ function hit(playerHand, currentDeck, dealerHand) {
  * adds no card to player's deck, 
  */
 function stand() {
-    // var elem = document.getElementById("stand");
+    checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
 }
 
 // const hitButton = document.getElementById("hit");
