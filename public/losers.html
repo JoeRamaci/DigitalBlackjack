@@ -3,7 +3,7 @@
 <head>
   <title>Forms</title>
 
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="./stylesheets/style.css">
 
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
@@ -15,11 +15,10 @@
 </head>
 
 <body>
-  <div id="corners">
-    <img id="cornertopright" src="./images/Corner1.png">
+  <div class="page_header">
     <img id="cornertopleft" src="./images/Corner1.png">
-    <img id="cornerbottomright" src="./images/Corner1.png">
-    <img id="cornerbottomleft" src="./images/Corner1.png">
+    <img id="title_icon" src="./images/Banner_Icon.png">
+    <img id="cornertopright" src="./images/Corner1.png">
   </div>
 
   <div id="scoreboard">
@@ -30,7 +29,11 @@
     <br>
     <a href="game">Go back to playing</a><br>
   </div>
-
+  <div class="page_header">
+    <img id="cornerbottomleft" src="./images/Corner1.png">
+    <img id="title_icon" src="./images/Banner_Icon.png">
+    <img id="cornerbottomright" src="./images/Corner1.png">
+  </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
