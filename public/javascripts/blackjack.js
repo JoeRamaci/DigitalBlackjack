@@ -3,6 +3,22 @@ let cardValueArray = new Array(11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10);
 let faceArray = new Array("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King");
 
 /**
+ * TODO: 10), 3) 
+ */
+function getPlayerHand(playerHand) {
+    console.log("playerHand:")
+    playerHand.forEach(e => console.log(e));
+}
+
+/**
+ * TODO: 11), 3)
+ */
+function getDealerHand(dealerHand) {
+    console.log("dealerHand:")
+    dealerHand.forEach(e => console.log(e));
+}
+
+/**
  * Creates a new deck array consisting of 52 unshuffled cards.
  * @returns Unshuffled deck.
  */
@@ -109,7 +125,7 @@ function createNewGame() {
     dealerHand = [];
 
     // Creates a new deck and shuffles.
-    let currentDeck = new createDeck;
+    currentDeck = new createDeck;
     shuffleDeck(currentDeck);
 
     //Deals the initial two cards to each hand from the top of the shuffled deck.
@@ -131,8 +147,8 @@ function createNewGame() {
     changeImage(cardName, "dealer_card2");
 
 
-    // Replaces the start game button with a restart gambiling button. And unhides the hit and stand buttons.
-    document.getElementById("startGame").value = ("Restart Gambling!");
+    // Replaces the start game button with a restart game button. And unhides the hit and stand buttons.
+    document.getElementById("startGame").value = ("Restart Game!");
     document.getElementById("hit").removeAttribute("hidden");
     document.getElementById("stand").removeAttribute("hidden");
 
@@ -146,11 +162,14 @@ function changeImage(img, element) {
 
 function checkWinCondition(playerHandSum, dealerHandSum) {
     if (playerHandSum == 21 && dealerHandSum != 21) {
-        document.getElementById("hand-title").innerHTML = ("You win!")
+        document.getElementById("hand-title").innerHTML = ("You win!");    
         return gameOver = true;
     }
     if (playerHandSum != 21 && dealerHandSum == 21 || playerHandSum > 21) {
-        document.getElementById("hand-title").innerHTML = ("You lose!")
+        document.getElementById("hand-title").innerHTML = ("You lose!");
+        // get the name of first card from dealer
+        cardName = returnCardName(dealerHand, 0);
+        changeImage(cardName, "dealer_card1");
         return gameOver = true;
     }
     else {
@@ -159,31 +178,23 @@ function checkWinCondition(playerHandSum, dealerHandSum) {
 }
 
 
-
+// TODO:
+//      1) 
 function hit(playerHand, currentDeck, dealerHand) {
-    cardName = returnCardName(dealerHand, 0);
-    changeImage(cardName, "dealer_card1");
+
+    // deal a card to player and dealer(should just deal to whomever we want it to deal to)
     dealCard(playerHand, currentDeck);
+    dealCard(dealerHand, currentDeck);
+    // get name of last player card
     cardName = returnCardName(playerHand, 2);
     changeImage(cardName, "player_card3");
-    checkWinCondition(cardSum(playerHand), cardSum(dealerHand))
-}
-
-
-/**
- * TODO: 10), 3) 
- */
-function getPlayerHand(playerHand) {
-    console.log("playerHand:")
-    playerHand.forEach(e => console.log(e));
-}
-
-/**
- * TODO: 11), 3)
- */
-function getDealerHand(dealerHand) {
-    console.log("dealerHand:")
-    dealerHand.forEach(e => console.log(e));
+    console.log("\nPlayerHand post hit:");
+    checkCards(playerHand);
+    console.log("\nDealerHand post hit:");
+    checkCards(dealerHand);
+    console.log("\n");
+    // check if someone won
+    checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
 }
 
 /**
@@ -199,11 +210,12 @@ function stand() {
 // hitButton.addEventListener("click", hit(playerHand, currentDeck, dealerHand));
 
 
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
     document.getElementById("startGame").addEventListener("click", function() {
         createNewGame();
     });
     document.getElementById('hit').addEventListener('click', function() {
+        console.log("test");
         hit(playerHand, currentDeck, dealerHand);
     });
 });
