@@ -55,6 +55,7 @@ function shuffleDeck(deck) {
  * @returns String i.e. "Ace of Spades"
  */
 function returnCardName(cards, i) {
+    console.log("RETURNCARDNAME " + cards[i].faceName + (" of ") + cards[i].suit);
     return (cards[i].faceName + (" of ") + cards[i].suit);
 }
 
@@ -115,9 +116,9 @@ let playerHand;
 let dealerHand;
 let currentDeck;
 function createNewGame() {
-    document.getElementById("player_card3").setAttribute("hidden", "");
-    document.getElementById("player_card4").setAttribute("hidden", "");
-    document.getElementById("dealer_card3").setAttribute("hidden", "");
+    // document.getElementById("player_card3").setAttribute("hidden", "");
+    // document.getElementById("player_card4").setAttribute("hidden", "");
+    // document.getElementById("dealer_card3").setAttribute("hidden", "");
 
 
     // Initializes two empty hands for the player and dealer.
@@ -156,8 +157,9 @@ function createNewGame() {
     
 }
 
-function changeImage(img, element) {
-    document.getElementById(element).src = "./images/Cards/" + img + ".png";
+function changeImage(img, id) {
+    document.getElementById(id).src = "./images/Cards/" + img + ".png";
+    console.log("CHANGEIMAGE ./images/Cards/" + img + ".png");
 }
 
 function checkWinCondition(playerHandSum, dealerHandSum) {
@@ -177,22 +179,28 @@ function checkWinCondition(playerHandSum, dealerHandSum) {
     }
 }
 
-
-// TODO:
-//      1) 
+let playerCardCount = 2;
+let dealerCardCount = 2;
 function hit(playerHand, currentDeck, dealerHand) {
-
     // deal a card to player and dealer(should just deal to whomever we want it to deal to)
     dealCard(playerHand, currentDeck);
     dealCard(dealerHand, currentDeck);
     // get name of last player card
-    cardName = returnCardName(playerHand, 2);
-    changeImage(cardName, "player_card3");
+    cardName = returnCardName(playerHand, playerCardCount);
+    console.log("HIT " + cardName);
+    playerCardCount++;
+    console.log(playerCardCount);
+    document.getElementsByName('player-cards').innerHTML = (`<img id="player_card${playerCardCount}" style="width:15%">`);
+    console.log(cardName + ` player_card${playerCardCount}`);
+    changeImage(cardName, `player_card${playerCardCount}`);
+
+    // DEBUG
     console.log("\nPlayerHand post hit:");
     checkCards(playerHand);
     console.log("\nDealerHand post hit:");
     checkCards(dealerHand);
     console.log("\n");
+
     // check if someone won
     checkWinCondition(cardSum(playerHand), cardSum(dealerHand));
 }
@@ -215,7 +223,7 @@ window.addEventListener('load', function() {
         createNewGame();
     });
     document.getElementById('hit').addEventListener('click', function() {
-        console.log("test");
+        console.log("HIT");
         hit(playerHand, currentDeck, dealerHand);
     });
 });
